@@ -4,7 +4,7 @@ function SortPopup({ itemsSort, onClick }) {
     const [FlagPopup, setFlagPopup] = React.useState(true)
     const [activeItem, setActiveItem] = React.useState(0)
     const sortRef = React.useRef(null);
-
+    const activeLabel = itemsSort[activeItem].name;
 
     const onSelectItem = (index) => {
         setActiveItem(index);
@@ -12,7 +12,6 @@ function SortPopup({ itemsSort, onClick }) {
     }
 
     const handleOutsideClick = (e) => {
-        console.log(e.path)
         if (!e.path.includes(sortRef.current)) setFlagPopup(true);
     }
 
@@ -35,19 +34,19 @@ function SortPopup({ itemsSort, onClick }) {
                         fill="#2C2C2C" />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => setFlagPopup(!FlagPopup)}>{itemsSort && itemsSort[activeItem]}</span>
+                <span onClick={() => setFlagPopup(!FlagPopup)}>{activeLabel}</span>
             </div>
             <div className="sort__popup" hidden={FlagPopup}>
                 <ul>
                     {
                         itemsSort &&
-                        itemsSort.map((item, index) => (
+                        itemsSort.map((obj, index) => (
                             <li
                                 className={activeItem === index ? 'active' : ''}
                                 onClick={() => onSelectItem(index)}
-                                key={`${item}_${index}`}>
+                                key={`${obj.type}_${index}`}>
 
-                                {item}
+                                {obj.name}
 
                             </li>
                         ))
