@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+
 function PizzaBlock({ imageUrl, name, types, sizes, price, category, rating }) {
     const availableTypes = ['тонкое', 'традиционное']
     const availableSizes = [26, 30, 40]
@@ -16,6 +17,7 @@ function PizzaBlock({ imageUrl, name, types, sizes, price, category, rating }) {
         setActiveSize(size)
     }
 
+ 
 
     return (
         <div className="pizza-block">
@@ -80,8 +82,8 @@ PizzaBlock.propTypes = {
 };
 
 PizzaBlock.defaultProps = {
-    name:  '',
-    imageUrl: '' ,
+    name: '',
+    imageUrl: '',
     types: [],
     sizes: [],
     price: 0
