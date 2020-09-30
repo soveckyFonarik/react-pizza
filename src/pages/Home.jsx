@@ -13,17 +13,14 @@ const sortItem = [
     { name: 'алфавиту', type: 'alphabet' }]
 
 
-    //FIXME: не работает изменения category, sortBy
 function Home() {
+    const dispatch = useDispatch();
     const items = useSelector(({ pizzas }) => pizzas.items);
     const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-    const {category, sortBy} = useSelector(({ filters }) => filters);
-    const dispatch = useDispatch();
-    console.log(category,sortBy)
+    const { category, sortBy } = useSelector(({ filters }) => filters);
+    
     React.useEffect(() => {
-        if (!items.length) {
-            dispatch(fetchPizzas())
-        }
+        dispatch(fetchPizzas())
     }, [category]);
 
     const reduxSelectCategory = React.useCallback((index) => {
@@ -39,7 +36,7 @@ function Home() {
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
                 {
-                    isLoaded ? items.map((obj) => <PizzaBlock key={obj.id} {...obj} />) : Array(12).fill(0).map((_,index)=><PizzaLoadingBlock key={index} />) }
+                    isLoaded ? items.map((obj) => <PizzaBlock key={obj.id} {...obj} />) : Array(12).fill(0).map((_, index) => <PizzaLoadingBlock key={index} />)}
 
             </div>
         </div>
